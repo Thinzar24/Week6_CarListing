@@ -1,0 +1,9 @@
+body{
+    background-image: url("carbg.jpeg");
+    font-family: 'Caveat', cursive;
+}
+
+.jumbotron{
+    opacity: .7;
+    color:black;
+}
