@@ -17,8 +17,9 @@ public class HomeController {
 
     @Autowired
     CarRepository carRepository;
-    @Autowired
-    CategoryRepository categoryRepository;
+//    @Autowired
+//    CategoryRepository categoryRepository;
+
 
     @Autowired
     CloudinaryConfig cloudc;
@@ -33,17 +34,6 @@ public class HomeController {
     public String addCar(Model model){
         model.addAttribute("car", new Car());
         return "carform";
-    }
-    @RequestMapping("/addCategory")
-    public String addCategory(Model model){
-        model.addAttribute("category", new Category());
-        return "addcategory";
-    }
-
-    @PostMapping("/processCategory")
-    public String processCategory(@ModelAttribute Category category){
-        categoryRepository.save(category);
-        return "redirect:/";
     }
 
     @PostMapping("/process")
@@ -69,6 +59,7 @@ public class HomeController {
         return "redirect:/";
     }
 
+
     @RequestMapping("/details/{id}")
     public String carDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("car", carRepository.findById(id).get());
@@ -86,4 +77,5 @@ public class HomeController {
         carRepository.deleteById(id);
         return "redirect:/";
     }
+
 }
