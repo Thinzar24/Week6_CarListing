@@ -29,7 +29,7 @@
                 <a class="nav-link text-light" href="/add">Add A Car</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" href="/process">Add A Category</a>
+                <a class="nav-link text-light" href="/addcategory">Add A Category</a>
             </li>
 
         </ul>
@@ -87,13 +87,12 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <lable class="col-sm-2 ">Category </lable>
-                <div class="col-sm-6">
-                    <textarea class="form-control" placeholder="Text" type="text" th:field="*{Category}" />
-                    <span class="text-danger" th:if="${#fields.hasErrors('Category')}"
-                          th:errors="*{Category}"></span>
-                </div>
+            <div class="form-group">
+                <label for="categoryInput">Category Type</label>
+                <select class="form-control" id="categoryInput" th:field="*{Category_name}">
+                    <option th:each="aCategory: ${categories}" th:value="${aCategory.type}"
+                            th:text="${aCategory.type}"></option>
+                </select>
             </div>
 
             <div class="form-group row">

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
@@ -17,8 +16,8 @@ public class HomeController {
 
     @Autowired
     CarRepository carRepository;
-//    @Autowired
-//    CategoryRepository categoryRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
 
     @Autowired
@@ -27,12 +26,16 @@ public class HomeController {
     @RequestMapping("/")
     public String listCars(Model model){
         model.addAttribute("cars", carRepository.findAll());
+//        model.addAttribute("categories", categoryRepository.findAll());
+//        model.addAttribute("numOfCategories",categoryRepository.count());
         return "carlist";
     }
 
     @GetMapping("/add")
     public String addCar(Model model){
+
         model.addAttribute("car", new Car());
+        model.addAttribute("categories",categoryRepository.findAll());
         return "carform";
     }
 
@@ -75,6 +78,20 @@ public class HomeController {
     @RequestMapping("/delete/{id}")
     public String carDelete(@PathVariable("id") long id){
         carRepository.deleteById(id);
+        return "redirect:/";
+    }
+    @GetMapping("/addcategory")
+    public String loadCategoryForm(Model model) {
+        model.addAttribute("category", new Category());
+        return "categoryform";
+    }
+
+    @PostMapping("/addcategory")
+    public String processCategoryForm( @ModelAttribute("category") Category category) {
+//        if (result.hasErrors()) {
+//            return "categoryform";
+//        }
+        categoryRepository.save(category);
         return "redirect:/";
     }
 

@@ -28,9 +28,10 @@ public class Car {
     private String MSRP;
 
     @NotNull
-    private String Category;
+    private String Category_name;
 
     private String image;
+
 
     public long getId() {
         return id;
@@ -72,12 +73,12 @@ public class Car {
         this.MSRP = MSRP;
     }
 
-    public String getCategory() {
-        return Category;
+    public String getCategory_name() {
+        return Category_name;
     }
 
-    public void setCategory(String category) {
-        Category = category;
+    public void setCategory_name(String category_name) {
+        Category_name = category_name;
     }
 
     public String getImage() {

@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-
-    <title>Car Details</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../Style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 
+
+    <title>Category Form</title>
+
+
 </head>
 
-
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <!--<a class="navbar-brand text-light" href="#">Profile</a>-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,23 +37,41 @@
 </nav>
 <br/><br/><br/>
 
-<a href="/">Show All Cars</a><br/>
-
 <div class="container">
 
+    <div class="space"></div>
+
     <div class="jumbotron">
-    <!--<div class="bg-light">-->
+        <!--<div class="bg-light px-4">-->
+        <h2 class="text-center py-4">Add a Category</h2>
 
-        Manufacturer :<span th:text="${car.Manufacturer}"></span> <br/>
-        Model        :<span th:text="${car.Model}"></span> <br/>
-        Year         :<span th:text="${car.Year}"></span> <br/>
-        MSRP         :<span th:text="${car.MSRP}"></span> <br/>
-        Category     :<span th:text="${car.Category}"></span> <br/>
+        <form method="POST" th:action="@{/addcategory}" th:object="${category}" >
 
-        <div th:if="${car.image} != null">
-            <img th:src="${car.image}" alt="Pictue of car">
-        </div>
-        <a th:href="@{/delete/{id}(id=${car.id})}">Delete this Car</a>
+            <div class="form-group">
+                <input type="hidden" th:field="*{id}" class="form-control" />
+            </div>
+
+            <div class="form-group row">
+                <lable class="col-sm-2 ">Category </lable>
+                <div class="col-sm-6">
+                    <textarea class="form-control" placeholder="Text" type="text" th:field="*{type}" />
+                    <!--<span class="text-danger" th:if="${#fields.hasErrors('type')}"-->
+                          <!--th:errors="*{type}"></span>-->
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="col-sm-12" align="center">
+                    <button class="btn btn-info" type="submit"> Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="space"></div>
+
     </div>
 
 </div>
